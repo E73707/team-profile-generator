@@ -1,0 +1,43 @@
+.card {
+  padding: 0px;
+  text-align: center;
+  width: 25%;
+  margin: auto;
+  position: relative;
+  border-color: black;
+  border: 1px;
+  border-style: solid;
+}
+.top-half {
+  background-color: blanchedalmond;
+  height: 100%;
+}
+
+h3 {
+  margin: 0px;
+  padding: 10px;
+}
+
+.card-content {
+  align-self: center;
+  margin: 50px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+ul {
+  padding: 0px;
+  margin: auto;
+  list-style: none;
+  text-align: left;
+  margin: 10px;
+}
+
+li {
+  border-color: black;
+  border: 1px;
+  border-style: solid;
+  margin: -1px 10px;
+  padding: 5px;
+}
