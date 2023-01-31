@@ -1,76 +1,17 @@
+const Employee = require("./lib/employee");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+const Manager = require("./lib/manager");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
 const { arrayBuffer } = require("stream/consumers");
 
-class Employee {
-  constructor(name, id, email) {
-    this.name = name;
-    this.id = id;
-    this.email = email;
-  }
-
-  getName = () => {
-    if (this.name === true) {
-      return this.name;
-    }
-  };
-
-  getEmail = () => {
-    if (this.email === true) {
-      return this.email;
-    }
-  };
-
-  getId = () => {
-    if (this.id === true) {
-      return this.id;
-    }
-  };
-
-  getRole = () => {
-    return "Employee";
-  };
-}
-class Manager extends Employee {
-  constructor(name, id, email, officeNumber) {
-    super(name, id, email);
-    this.officeNumber = officeNumber;
-  }
-  getRole() {
-    return "Manager";
-  }
-}
-
-class Engineer extends Employee {
-  constructor(name, id, email, github) {
-    super(name, id, email);
-    this.github = github;
-  }
-  getGithub() {
-    return this.github;
-  }
-  getRole() {
-    return "Engineer";
-  }
-}
-
-class Intern extends Employee {
-  constructor(name, id, email, school) {
-    super(name, id, email);
-    this.school = school;
-  }
-  getSchool() {
-    return this.school;
-  }
-  getRole() {
-    return "Intern";
-  }
-}
-
 const employees = [];
 
 const writeFile = util.promisify(fs.writeFile);
+
+const obj = new Employee("edward", 34, "eddivaughan");
 
 async function promptUser() {
   const questions = [
