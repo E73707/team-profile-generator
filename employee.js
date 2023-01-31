@@ -1,26 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-
-const html = `<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width", initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="./assets/stylesheet.css" />
-</head>
-<body>
-  <div>
-    <nav>
-      <h1>title</h1>
-    </nav>
-    <div>
-      <div class="card-content"></div>
-    </div>
-  </div>
-</body>
-</html>`;
+const { arrayBuffer } = require("stream/consumers");
 
 class Employee {
   constructor(name, id, email) {
@@ -178,38 +159,74 @@ async function promptUser() {
   if (isCorrect) {
     promptUser();
   } else {
-    fs.writeFile("employelist.html", html, (err) => {
+    employees.forEach(myFunction);
+
+    let html = `<html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width", initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="./assets/stylesheet.css" />
+    </head>
+    <body>
+      <div>
+        <nav>
+          <h1>My Team</h1>
+        </nav>
+        <div>
+          <div class="card-content">${returnCard(cardArr)}</div>
+        </div>
+      </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="./employee.js"></script>
+    </html>`;
+    await fs.writeFile("employeelist.html", html, (err) => {
       if (err) {
         console.log(err);
       }
     });
   }
 
-  // employees.forEach(appendToHtml);
-
   console.log(employees);
 }
 
-function appendToHtml(e) {
-  console.log(document);
+const cardArr = [];
+
+function myFunction(i) {
+  let name = i.name;
+  let id = i.id;
+  let email = i.email;
+  if (i.school) {
+    var variable = i.school;
+    var role = "intern";
+  } else if (i.github) {
+    var variable = i.github;
+    var role = "engineer";
+  } else if (i.officeNumber) {
+    var role = "manager";
+    var variable = i.officeNumber;
+  }
+  let card = `<div class="card">
+      <div class="top-half">
+        <h3 class="name">${name}</h3>
+        <h3 class="position">${role}</h3>
+      </div>
+      <div>
+        <ul>
+          <li class="id">${id}</li>
+          <li class="email">${email}</li>
+          <li class="variableEl">${variable}</li>
+        </ul>
+      </div>
+    </div> `;
+
+  cardArr.push(card);
 }
 
-appendToHtml();
+let returnCard = function (arr) {
+  return arr.join(" ");
+};
 
 promptUser();
-
-{
-  /* <div class="card">
-            <div class="top-half">
-              <h3 class="name"></h3>
-              <h3 class="position"></h3>
-            </div>
-            <div>
-              <ul>
-                <li class="id"></li>
-                <li class="email"></li>
-                <li class="variableEl"></li>
-              </ul>
-            </div>
-          </div> */
-}
