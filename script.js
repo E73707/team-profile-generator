@@ -145,6 +145,7 @@ function myFunction(i) {
   } else if (i.github) {
     var variable = `Github: ${i.github}`;
     var role = "engineer";
+    var variableLink = `https://github.com/${i.github}/`;
   } else if (i.officeNumber) {
     var role = "manager";
     var variable = `Office number: ${i.officeNumber}`;
@@ -157,8 +158,8 @@ function myFunction(i) {
       <div>
         <ul>
           <li class="id">Id: ${id}</li>
-          <li class="email">email: ${email}</li>
-          <li class="variableEl">${variable}</li>
+          <li class="email"><a href = "mailto: ${email}">Email: ${email}</a></li>
+          <li class="variableEl"><a href = "${variableLink}">${variable}</a></li>
         </ul>
       </div>
     </div> `;
