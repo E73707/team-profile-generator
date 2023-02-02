@@ -140,14 +140,14 @@ function myFunction(i) {
   let id = i.id;
   let email = i.email;
   if (i.school) {
-    var variable = i.school;
+    var variable = `School: ${i.school}`;
     var role = "intern";
   } else if (i.github) {
-    var variable = i.github;
+    var variable = `Github: ${i.github}`;
     var role = "engineer";
   } else if (i.officeNumber) {
     var role = "manager";
-    var variable = i.officeNumber;
+    var variable = `Office number: ${i.officeNumber}`;
   }
   let card = `<div class="card">
       <div class="top-half">
@@ -156,8 +156,8 @@ function myFunction(i) {
       </div>
       <div>
         <ul>
-          <li class="id">${id}</li>
-          <li class="email">${email}</li>
+          <li class="id">Id: ${id}</li>
+          <li class="email">email: ${email}</li>
           <li class="variableEl">${variable}</li>
         </ul>
       </div>
